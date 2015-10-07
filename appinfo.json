@@ -1,0 +1,58 @@
+{
+  "uuid": "e715cf78-fd51-4132-b8ba-49a11a021987",
+  "shortName": "Standup",
+  "longName": "Standup for Pivotal Tracker",
+  "companyName": "Dungeoneer",
+  "versionLabel": "2.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["basalt"],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {},
+  "resources": {
+    "media": [
+      {
+        "menuIcon": true,
+        "type": "png",
+        "name": "IMAGE_MENU_ICON",
+        "file": "images/menu_icon.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_LOGO_SPLASH",
+        "file": "images/logo_splash.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_TILE_SPLASH",
+        "file": "images/tile_splash.png"
+      },
+      {
+        "file": "images/release.png",
+        "name": "IMAGES_RELEASE_PNG",
+        "type": "png"
+      },
+      {
+        "file": "images/feature.png",
+        "name": "IMAGES_FEATURE_PNG",
+        "type": "png"
+      },
+      {
+        "file": "images/chore.png",
+        "name": "IMAGES_CHORE_PNG",
+        "type": "png"
+      },
+      {
+        "file": "images/bug.png",
+        "name": "IMAGES_BUG_PNG",
+        "type": "png"
+      },
+      {
+        "type": "font",
+        "name": "MONO_FONT_14",
+        "file": "fonts/UbuntuMono-Regular.ttf"
+      }
+    ]
+  }
+}
