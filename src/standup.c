@@ -15,34 +15,26 @@ static void splashScreenLayerUpdateProc(struct Layer *layer, GContext *context) 
 
   graphics_context_set_text_color(context, GColorWhite);
   graphics_context_set_fill_color(context, BRAND_BLUE);
-  // graphics_draw_text(context, "Standup", fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD), bounds, GTextOverflowModeWordWrap, GTextAlignmentCenter, NULL);
   graphics_fill_rect(context, bounds, 0, 0);
-  graphics_context_set_stroke_width(context, 9);
+
+  GRect titleBox = {
+    .origin = (GPoint){.x = 0, .y = 130},
+    .size = (GSize){ .w = bounds.size.w, .h = 28}
+  };
+
+  graphics_draw_text(context, "Standup", fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD), titleBox, GTextOverflowModeWordWrap, GTextAlignmentCenter, NULL);
+  graphics_context_set_stroke_width(context, 10);
   graphics_context_set_stroke_color(context, GColorWhite);
-  graphics_draw_circle(context, (GPoint){.x=bounds.size.w/2, .y=bounds.size.h/2}, bounds.size.w*0.4);
+  graphics_draw_circle(context, (GPoint){.x=bounds.size.w/2, .y=(bounds.size.h/2)-15}, 55);
 
   graphics_context_set_fill_color(context, GColorWhite);
   GPath *cardPath = gpath_create(&CARD_PATH_INFO);
-  gpath_move_to(cardPath, (GPoint){.x=bounds.size.w/2, .y=bounds.size.h/2});
-  gpath_draw_filled(context, cardPath);
 
-  gpath_move_to(cardPath, (GPoint){.x=bounds.size.w/2, .y=bounds.size.h/2});
-  gpath_rotate_to(cardPath, TRIG_MAX_ANGLE/6);
-  gpath_draw_filled(context, cardPath);
-
-  gpath_move_to(cardPath, (GPoint){.x=bounds.size.w/2, .y=bounds.size.h/2});
-  gpath_rotate_to(cardPath, 2*(TRIG_MAX_ANGLE/6));
-  gpath_draw_filled(context, cardPath);
-
-  gpath_move_to(cardPath, (GPoint){.x=bounds.size.w/2, .y=bounds.size.h/2});
-  gpath_rotate_to(cardPath, 3*(TRIG_MAX_ANGLE/6));
-  gpath_draw_filled(context, cardPath);
-  gpath_move_to(cardPath, (GPoint){.x=bounds.size.w/2, .y=bounds.size.h/2});
-  gpath_rotate_to(cardPath, 4*(TRIG_MAX_ANGLE/6));
-  gpath_draw_filled(context, cardPath);
-  gpath_move_to(cardPath, (GPoint){.x=bounds.size.w/2, .y=bounds.size.h/2});
-  gpath_rotate_to(cardPath, 5*(TRIG_MAX_ANGLE/6));
-  gpath_draw_filled(context, cardPath);
+  for(int i = 0; i < 6; i++) {
+    gpath_move_to(cardPath, (GPoint){.x=bounds.size.w/2, .y=(bounds.size.h/2)-15});
+    gpath_rotate_to(cardPath, i*(TRIG_MAX_ANGLE/6));
+    gpath_draw_filled(context, cardPath);
+  }
 }
 
 static void splashScreenLoad(Window *window) {
