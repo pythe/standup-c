@@ -35,30 +35,23 @@ static void splashScreenLayerUpdateProc(struct Layer *layer, GContext *context) 
     gpath_rotate_to(cardPath, i*(TRIG_MAX_ANGLE/6));
     gpath_draw_filled(context, cardPath);
   }
+
+  gpath_destroy(cardPath);
 }
 
 static void splashScreenLoad(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   layer_set_update_proc(window_layer, splashScreenLayerUpdateProc);
-  // GRect bounds = layer_get_bounds(window_layer);
-  // BitmapLayer *splashLogoLayer = bitmap_layer_create(bounds);
-  // splashLogo = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_LOGO_SPLASH);
-
-  // bitmap_layer_set_bitmap(splashLogoLayer, splashLogo);
-
-  // layer_add_child(window_layer, bitmap_layer_get_layer(splashLogoLayer));
-}
-
-static void splashScreenUnload() {
-  // gbitmap_destroy(splashLogo);
 }
 
 static void syncChangedHandler(const uint32_t key, const Tuple *newTuple, const Tuple *oldTuple, void *context) {
   // update UI here
+  // a change here means the XHR has resolved. Build the menu using the dictionary!
 }
 
 static void syncErrorHandler(DictionaryResult dictError, AppMessageResult appMessageError, void *context) {
   // An error occured!
+  // Display an error page?
 }
 
 static void init(void) {
@@ -66,7 +59,7 @@ static void init(void) {
   // window_set_click_config_provider(window, click_config_provider);
   window_set_window_handlers(splashWindow, (WindowHandlers) {
     .load = splashScreenLoad,
-    .unload = splashScreenUnload
+    .unload = NULL
   });
   const bool animated = true;
   window_stack_push(splashWindow, animated);
